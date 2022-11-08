@@ -1,0 +1,141 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Game/Game.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Game/Camera2D.gd" type="Script" id=8]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 560, 328 )
+current = true
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+script = ExtResource( 8 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+margin_left = 24.0
+margin_top = 20.0
+margin_right = 306.0
+margin_bottom = 253.0
+custom_constants/separation = 20
+
+[node name="LevelSize" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+margin_right = 282.0
+margin_bottom = 24.0
+
+[node name="LevelSizeInput" type="SpinBox" parent="CanvasLayer/VBoxContainer/LevelSize"]
+margin_right = 74.0
+margin_bottom = 24.0
+min_value = 30.0
+value = 50.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/LevelSize"]
+margin_left = 78.0
+margin_top = 5.0
+margin_right = 142.0
+margin_bottom = 19.0
+text = "Level Size"
+
+[node name="MinAreaSize" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+margin_top = 44.0
+margin_right = 282.0
+margin_bottom = 68.0
+
+[node name="MinAreaSizeInput" type="SpinBox" parent="CanvasLayer/VBoxContainer/MinAreaSize"]
+margin_right = 74.0
+margin_bottom = 24.0
+min_value = 5.0
+max_value = 20.0
+value = 5.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/MinAreaSize"]
+margin_left = 78.0
+margin_top = 5.0
+margin_right = 165.0
+margin_bottom = 19.0
+text = "Min Area Size"
+
+[node name="CorridorWidth" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+margin_top = 88.0
+margin_right = 282.0
+margin_bottom = 112.0
+
+[node name="CorridorWidthInput" type="SpinBox" parent="CanvasLayer/VBoxContainer/CorridorWidth"]
+margin_right = 74.0
+margin_bottom = 24.0
+min_value = 1.0
+max_value = 10.0
+value = 2.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/CorridorWidth"]
+margin_left = 78.0
+margin_top = 5.0
+margin_right = 171.0
+margin_bottom = 19.0
+text = "Corridor Width"
+
+[node name="MinSplitRange" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+margin_top = 132.0
+margin_right = 282.0
+margin_bottom = 156.0
+
+[node name="MinSplitRangeInput" type="SpinBox" parent="CanvasLayer/VBoxContainer/MinSplitRange"]
+margin_right = 74.0
+margin_bottom = 24.0
+min_value = 0.1
+max_value = 0.5
+step = 0.1
+value = 0.4
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/MinSplitRange"]
+margin_left = 78.0
+margin_top = 5.0
+margin_right = 176.0
+margin_bottom = 19.0
+text = "Min Split Range"
+
+[node name="MaxSplitRange" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+margin_top = 176.0
+margin_right = 282.0
+margin_bottom = 200.0
+
+[node name="MaxSplitRangeInput" type="SpinBox" parent="CanvasLayer/VBoxContainer/MaxSplitRange"]
+margin_right = 74.0
+margin_bottom = 24.0
+min_value = 0.5
+max_value = 1.0
+step = 0.1
+value = 0.6
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/MaxSplitRange"]
+margin_left = 78.0
+margin_top = 5.0
+margin_right = 178.0
+margin_bottom = 19.0
+text = "Max Split Range"
+
+[node name="ShowCorridorButton" type="CheckButton" parent="CanvasLayer/VBoxContainer"]
+margin_top = 220.0
+margin_right = 282.0
+margin_bottom = 260.0
+pressed = true
+text = "Show Corridor"
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+margin_top = 280.0
+margin_right = 282.0
+margin_bottom = 300.0
+text = "build"
+
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/LevelSize/LevelSizeInput" to="." method="_on_LevelSizeInput_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/MinAreaSize/MinAreaSizeInput" to="." method="_on_MinAreaSizeInput_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/CorridorWidth/CorridorWidthInput" to="." method="_on_CorridorWidthInput_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/MinSplitRange/MinSplitRangeInput" to="." method="_on_MinSplitRangeInput_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/MaxSplitRange/MaxSplitRangeInput" to="." method="_on_MaxSplitRangeInput_value_changed"]
+[connection signal="toggled" from="CanvasLayer/VBoxContainer/ShowCorridorButton" to="." method="_on_ShowCorridorButton_toggled"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_Button_pressed"]
